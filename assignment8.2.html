@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5 local storage</title>
+<script>
+function displaySignUpPage(){
+	document.getElementsByClassName("mainPage")[0].style.display="none";
+	document.getElementsByClassName("signUpPage")[0].style.display="block";
+}	
+function displayHistory(){
+	document.getElementsByClassName("mainPage")[0].style.display="block";
+	document.getElementsByClassName("signUpPage")[0].style.display="none";
+}
+function displayMessage(){
+	var email = document.getElementById("email").value;
+	var pwd = document.getElementById("pwd").value; 
+	if(email === "admin@gmail.com" && pwd === "admin") {
+		document.getElementsByClassName("loginPage")[0].style.display="none";
+		document.getElementById("Welcome").style.display="block";
+		document.getElementById("welcomeMsg").innerHTML="welcome to Admin";
+		
+	} else {
+		document.getElementById("failedMessage").style.visibility ="visible";
+		document.getElementById("failedMessage").style.color ="red";
+	}
+	
+}
+function displayLoginPage(){
+	document.getElementById("failedMessage").style.visibility ="hidden";
+	document.getElementsByClassName("mainPage")[0].style.display="none";
+	document.getElementsByClassName("signUpPage")[0].style.display="none";
+	document.getElementsByClassName("loginPage")[0].style.display="block";
+}
+function displayHome(){
+	document.getElementById("failedMessage").style.visibility ="hidden";
+	document.getElementsByClassName("mainPage")[0].style.display="block";
+	document.getElementsByClassName("signUpPage")[0].style.display="none";
+	document.getElementsByClassName("loginPage")[0].style.display="none";
+	document.getElementById("Welcome").style.display="none";
+}
+</script>
+<style>
+h2{
+	text-align: center;
+}
+.mainPage , .signUpPage , .loginPage , #Welcome{
+	height:300px;
+	width: 350px; 
+	margin: 0 auto;
+}
+.mainPage p {
+	margin: 0 80px;
+	position: relative;
+	top:100px;
+}
+.signUpPage , .loginPage {
+	display: none;
+}
+.signUpPage input,.signUpPage button, .loginPage input , .loginPage button{
+	margin: 0 80px;
+	padding: 5px;
+	/*position: relative;
+	top:100px;*/
+}
+#queryBtn , #queryBtn2 {
+	padding: 0px;
+	margin: 0 120px;
+}
+#btnBack , #btnBack2{
+	float: right;
+}
+#Welcome {
+	display: none;
+}
+</style>
+</head>
+<body>
+<h2>Adventure Hub</h2>
+
+<!--Below div contains the main page-->
+<div class="mainPage">
+	<p><button type="button" id="btn1" onclick="displayLoginPage();">Login</button>
+	<button type="button" id="btn2" onclick="displaySignUpPage();">SignUp</button></p>
+</div>
+
+<!--This div is to signUp-->
+<div class="signUpPage">
+	<p style="margin: 0 130px;">SignUp</p>
+	<p><input type="text" name="username" placeholder="Name"></p>
+	<P><input type="email" name="email" placeholder="Email"></P>
+	<p><input type="password" name="password" placeholder="Password"></p>
+	<p><button type="button" id="queryBtn">Submit Query</button></p>
+	<p><button type="button" id="btnBack" onclick="displayHistory();">Back</button></p>
+</div>
+
+<!--Below div is for login-->
+<div class="loginPage">
+	<p style="margin: 0 130px;">Login</p>
+	<P><input type="email" name="email" placeholder="Email" id="email"></P>
+	<p><input type="password" name="password" placeholder="Password" id="pwd"></p>
+	<p><button type="button" id="queryBtn2" onclick="displayMessage();">Submit Query</button></p>
+	<p id="failedMessage">email or password is incorrect</p>
+	<p><button type="button" id="btnBack2">Back</button></p>
+</div>
+
+<!--Below lines is for welcomePage -->
+<div id="Welcome">
+	<p id="welcomeMsg" style="text-align: center;"></p>
+	<button type="button" id="logout" onclick="displayHome();" style="float: right;">LogOut</button>
+</div>
+
+</body>
+</html>
